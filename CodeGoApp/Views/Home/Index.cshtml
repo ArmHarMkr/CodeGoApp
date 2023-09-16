@@ -1,8 +1,24 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using CodeGoApp.Areas.Identity.Data;
+@using CodeGoApp.ViewModels
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<AppUser> signInManager;
+@inject UserManager<AppUser> _userManager;
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@model List<UserViewModel>
+
+<h1>User List</h1>
+
+<link rel="stylesheet" href="~/css/user-cards.css" />
+
+<div class="user-cards">
+    @foreach (var user in Model)
+    {
+        <div class="user-card">
+            <h2>@user.FirstName @user.LastName</h2>
+            <p><strong>ID:</strong> @user.Id</p>
+            <p><strong>Email:</strong> @user.Email</p>
+            <p><strong>Languages:</strong> @user.Languages</p>
+            <!-- Add other card elements for additional properties -->
+        </div>
+    }
 </div>

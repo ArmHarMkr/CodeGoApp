@@ -15,7 +15,6 @@ public class AppDbContext : IdentityDbContext<AppUser>
     }
 
     public DbSet<MessageEntity> Messages { get; set; }
-
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

@@ -89,7 +89,7 @@ namespace CodeGoApp.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
-            [Display(Name = "Programming languages and frameworks full names")]
+            [Display(Name = "Programming languages and frameworks full names, divide with ','")]
             public string Languages { get; set; } //Here I added a STRING Languages. The user will set his prog.languages in one text block.
 
             /// <summary>
