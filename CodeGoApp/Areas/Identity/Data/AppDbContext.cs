@@ -1,7 +1,9 @@
 ﻿using CodeGoApp.Areas.Identity.Data;
+using CodeGoApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Xml.Xsl;
 
 namespace CodeGoApp.Data;
 
@@ -11,6 +13,8 @@ public class AppDbContext : IdentityDbContext<AppUser>
         : base(options)
     {
     }
+
+    public DbSet<MessageEntity> Messages { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
