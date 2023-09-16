@@ -36,6 +36,12 @@ app.UseAuthentication();;
 
 app.UseAuthorization();
 
+app.MapAreaControllerRoute(
+    name: "chat_area",
+    areaName: "chat",
+    pattern: "chat/{controller=Home}/{action=Index}/{id?}"
+);
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

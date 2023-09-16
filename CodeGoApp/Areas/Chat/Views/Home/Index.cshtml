@@ -1,0 +1,18 @@
+﻿@using CodeGoApp.Areas.Identity.Data;
+@using CodeGoApp.ViewModels
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<AppUser> signInManager;
+@inject UserManager<AppUser> _userManager;
+@model List<UserViewModel>
+
+
+@foreach (var user in Model)
+{
+    <h3>SenderId</h3>
+    <p>@user.CurrentUserId</p>
+
+    <h3>Reciever Id</h3>
+    <p>@user.Id</p>
+
+    <br />
+}
