@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace CodeGoApp.Controllers
@@ -41,7 +42,7 @@ namespace CodeGoApp.Controllers
                 .Select(u => new UserViewModel
                 {
 
-                    Id = u.Id,
+                    ReceiverId = u.Id,
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     Email = u.Email,
