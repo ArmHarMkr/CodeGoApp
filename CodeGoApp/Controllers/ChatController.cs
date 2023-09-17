@@ -43,14 +43,20 @@ namespace CodeGoApp.Controllers
                                 Languages = u.Languages
                             }).ToList();*/
 
+
             var currentUser = await _userManager.GetUserAsync(User);
+
             if (id != null)
             {
                 var receiverUser = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
+
                 messageEntity.SenderId = currentUser.Id;
                 messageEntity.RecieverId = receiverUser.Id;
+
                 _context.Messages.Add(messageEntity);
+
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction("Index", "Chat");
             }
             return NotFound();
