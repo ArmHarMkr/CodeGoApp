@@ -1,0 +1,17 @@
+﻿@using CodeGoApp.ViewModels;
+@model ChatViewModel
+
+@{
+
+    <h1>Show Messages with @Model.ReceiverUser.FirstName</h1>
+
+    <div class="message-list">
+        @foreach (var message in Model.Messages)
+        {
+            <div class="message">
+                <p><strong>@message.SenderId</strong> @message.MessageText | @message.SentTime.Hour : @message.SentTime.Minute</p>
+            </div>
+        }
+    </div>
+    <a asp-action="Messenger" asp-controller="Chat" asp-route-id="@Model.ReceiverUser.Id">Chat</a>
+}

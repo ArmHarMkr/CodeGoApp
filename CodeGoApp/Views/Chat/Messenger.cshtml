@@ -1,13 +1,10 @@
 ﻿@model CodeGoApp.Models.MessageEntity
 
 
-
-
-
-<form asp-action="Index" asp-controller="Chat">
+<form asp-action="Messenger" asp-controller="Chat">
     <div>
         <label asp-for="@Model.MessageText"></label>
-        <input asp-for="@Model.MessageText"/>
+        <input asp-for="@Model.MessageText" />
     </div>
     <div>
         <button type="submit" value="Send" class="btn btn-default">Send</button>

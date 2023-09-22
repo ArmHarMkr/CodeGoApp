@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-
-namespace CodeGoApp.ViewModels
+﻿namespace CodeGoApp.ViewModels
 {
     public class UserViewModel
     {

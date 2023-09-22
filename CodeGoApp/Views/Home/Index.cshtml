@@ -13,13 +13,16 @@
 <div class="user-cards">
     @foreach (var user in Model)
     {
-        <div class="user-card">
-            <h2>@user.FirstName @user.LastName</h2>
-            <p><strong>ID:</strong> @user.ReceiverId</p>
-            <p><strong>Email:</strong> @user.Email</p>
-            <p><strong>Languages:</strong> @user.Languages</p>
-            <a asp-action="Index" asp-controller="Chat" asp-route-id="@user.ReceiverId">Chat</a>
-        </div>
+        if (user != null)
+        {
+            <div class="user-card">
+                <h2>@user.FirstName @user.LastName</h2>
+                <p><strong>ID:</strong> @user.ReceiverId</p>
+                <p><strong>Email:</strong> @user.Email</p>
+                <p><strong>Languages:</strong> @user.Languages</p>
+                <a asp-action="ShowMessage" asp-controller="Chat" asp-route-id="@user.ReceiverId">Chat</a>
+            </div>
+        }
     }
 
 </div>
