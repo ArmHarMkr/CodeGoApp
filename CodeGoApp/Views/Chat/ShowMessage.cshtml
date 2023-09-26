@@ -1,4 +1,8 @@
-﻿@using CodeGoApp.ViewModels;
+﻿@inject UserManager<AppUser> _userManager;
+
+@using CodeGoApp.Areas.Identity.Data;
+@using CodeGoApp.ViewModels;
+@using Microsoft.AspNetCore.Identity;
 @model ChatViewModel
 
 @{
@@ -9,7 +13,15 @@
         @foreach (var message in Model.Messages)
         {
             <div class="message">
-                <p><strong>@message.SenderId</strong> @message.MessageText | @message.SentTime.Hour : @message.SentTime.Minute</p>
+                @if (message.Sender.UserName == _userManager.GetUserName(User))
+                {
+                    <p><strong>You:</strong> @message.MessageText | @message.SentTime.Hour:@message.SentTime.Minute</p>
+
+                }
+                else
+                {
+                    <p><strong>@message.Sender.FirstName:</strong> @message.MessageText | @message.SentTime.Hour:@message.SentTime.Minute</p>
+                }
             </div>
         }
     </div>

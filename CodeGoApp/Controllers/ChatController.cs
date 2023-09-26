@@ -39,8 +39,8 @@ namespace CodeGoApp.Controllers
             var receiverUser = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
             var messages = await _context.Messages
                 .Where(m =>
-                    (m.SenderId == currentUser.Id && m.RecieverId == id) ||
-                    (m.SenderId == id && m.RecieverId == currentUser.Id))
+                    (m.Sender == currentUser && m.Receiver.Id == id) ||
+                    (m.Sender.Id == id && m.Receiver == currentUser))
                 .OrderBy(m => m.SentTime)
                 .ToListAsync();
 
@@ -74,15 +74,15 @@ namespace CodeGoApp.Controllers
             if (id != null)
             {
                 var receiverUser = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
-                messageEntity.SenderId = currentUser.Id;
-                messageEntity.RecieverId = receiverUser.Id;
+                messageEntity.Sender = currentUser;
+                messageEntity.Receiver = receiverUser;
                 _context.Messages.Add(messageEntity);
 
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("Messenger", "Chat");
+                return RedirectToAction("ShowMessage", new { id });
             }
-            return NotFound();
+            return View();
         }
 
     }
