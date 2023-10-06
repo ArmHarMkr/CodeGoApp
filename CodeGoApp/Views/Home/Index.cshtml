@@ -8,6 +8,13 @@
 
 <h1>User List</h1>
 
+<form method="get" action="@Url.Action("Index", "Home")">
+    <label for="languages">Enter Programming Languages:</label>
+    <input type="text" name="languages" id="languages" placeholder="e.g., C#, JavaScript">
+
+    <button type="submit">Search</button>
+</form>
+
 <link rel="stylesheet" href="~/css/user-cards.css" />
 
 <div class="user-cards">
@@ -24,5 +31,4 @@
             </div>
         }
     }
-
 </div>

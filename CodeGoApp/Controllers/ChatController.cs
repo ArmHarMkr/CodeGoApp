@@ -44,13 +44,14 @@ namespace CodeGoApp.Controllers
                 .OrderBy(m => m.SentTime)
                 .ToListAsync();
 
-
+            
             var viewModel = new ChatViewModel
             {
                 CurrentUser = currentUser,
                 ReceiverUser = receiverUser,
                 Messages = messages,
-                NewMessage = new MessageEntity()
+                NewMessage = new MessageEntity(),
+                MsgLastCount = messages.Count()
             };
 
             return View(viewModel);

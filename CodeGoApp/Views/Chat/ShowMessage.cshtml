@@ -5,9 +5,11 @@
 @using Microsoft.AspNetCore.Identity;
 @model ChatViewModel
 
-@{
 
+
+@{
     <h1>Show Messages with @Model.ReceiverUser.FirstName</h1>
+    <h2>Messages sent: @Model.MsgLastCount</h2>
 
     <div class="message-list">
         @foreach (var message in Model.Messages)

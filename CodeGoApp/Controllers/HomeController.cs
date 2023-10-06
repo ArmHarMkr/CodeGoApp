@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CodeGoApp.Controllers
 {
@@ -27,29 +29,33 @@ namespace CodeGoApp.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? languages)
         {
-            /*            var id = _userManager.GetUserId(User);
-                        appUser = await _userManager.FindByIdAsync(id);
-                        if(appUser != null)
-                        {
-                            return View(appUser);
-                        }
-                        return NotFound();*/
             var currentUser = await _userManager.GetUserAsync(User);
-            var users = _userManager.Users
+            var allUsers = _userManager.Users
                 .Where(u => u.Id != currentUser.Id)
-                .Select(u => new UserViewModel
-                {
+                .ToList();
 
-                    ReceiverId = u.Id,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                    Email = u.Email,
-                    Languages = u.Languages
-                }).ToList();
+            // Filter users based on entered programming languages
+            var filteredUsers = allUsers;
 
-            return View(users);
+            if (!string.IsNullOrEmpty(languages))
+            {
+                filteredUsers = allUsers
+                    .Where(u => u.Languages.Contains(languages, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+
+            var usersViewModel = filteredUsers.Select(u => new UserViewModel
+            {
+                ReceiverId = u.Id,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Email = u.Email,
+                Languages = u.Languages
+            }).ToList();
+
+            return View(usersViewModel);
         }
 
         public IActionResult Privacy()
