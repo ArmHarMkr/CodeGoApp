@@ -12,7 +12,7 @@ namespace CodeGoApp.Models
 
         [ForeignKey("AppUser")]
         public string RecieverId { get; set; }*/
-
+        
         public AppUser Sender { get; set; }
         public AppUser Receiver { get; set; }
 

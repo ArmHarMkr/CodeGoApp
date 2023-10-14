@@ -16,7 +16,7 @@ public class AppUser : IdentityUser
     [PersonalData]
     public string LastName { get; set; }
 
-    public string Languages { get; set; } //Here I use string to store programming languages, but this is not the best way possible. CORRECT WITH ZAZYAN
+    public string Languages { get; set; } 
     public DateTime UserCreatedTime { get; set; } = DateTime.Now;
 
 }
